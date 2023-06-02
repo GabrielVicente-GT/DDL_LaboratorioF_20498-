@@ -39,10 +39,14 @@ pip install tabulate (no es necesaria)
 
 _Seguir el orden de ejecucion respetando los .yal y .yalp a cargar, el archivo que se verificara es el test_file.txt en el cual se puede escribir lo que se desee comprobar<br> main, scanner, lr, main (slr-X), scanner (test_file), slr-yapar _
 
-### Ejemplos de creaciónes de árboles de expresiones
+### Resultados finales
 
-_Pruebas solicitadas para el laboratorio_
 
-## Auto ✒️
+_Pruebas solicitadas para el laboratorio F_
+
+
+### Gracias por todo! :D
+
+## Autor ✒️
 
 - Gabriel Vicente 20498
