@@ -1,0 +1,25 @@
+
+let delim = [' ''\t''\n']
+let ws = delim+
+let caps = ['A'-'Z']
+let lowercase = ['a'-'z']
+let terminal = caps+
+let nts = lowercase+
+let nlp = (caps|lowercase)*
+
+rule tokens =
+    ws
+  | nlp       { return NLP }
+  | terminal  { return TERMINAL }
+  | nts       { return NTS }
+  | '%token'  { return TOKEN }
+  | '/*'      { return COMMENT }
+  | '*/'      { return COMMENT }
+  | '+'       { return PLUS }
+  | '*'       { return TIMES }
+  | ':'       { return TWOPOINTS }
+  | ';'       { return SEMICOLON }
+  | '('       { return LPAREN }
+  | ')'       { return RPAREN }
+
+(* Introducir cualquier trailer aqui *)

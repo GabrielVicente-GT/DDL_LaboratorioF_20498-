@@ -1,0 +1,10 @@
+
+:= AAA BBB CCC
+
+a\s a
+AA
+1ABC
+A123
+11
+
+1
