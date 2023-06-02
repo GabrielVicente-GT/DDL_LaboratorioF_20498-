@@ -5,24 +5,22 @@ Departamento de Ciencias de la Computación <br>
 CC 3071 Diseño de Lenguajes de programación <br>
 
 
-# DDL_LaboratorioE_20498
+# DDL_LaboratorioF_20498
 
-* Correcta interpretación de un archivo de especificación YAPar (extensión
-.yalp), siguiendo todos los lineamientos del archivo Consideraciones de
-YAPar.
-<br>
-* Validación de tokens provistos en archivo de especificación de YAPar con el
-output generado por YALex (validar que los tokens escritos en YAPar si se
-encuentren presentes como parte de la lectura de un archivo YALex).
-<br>
-* Cálculo de funciones asociadas sobre la gramática provista: FIRST, FOLLOW
-y CLOSURE.
-<br>
-* Generación de elementos de nodos de autómata LR(0) y construcción del
-autómata LR(0) con sus transiciones y elementos asociados, generado a
-partir de la gramática provista, incluyendo una representación visual del
-mismo.
-<br>
+* Construcción de tabla de parseo SLR(1), incluyendo todas sus partes
+correspondientes: ACTION table, GOTO table y estados, generada a partir
+del autómata LR(0).
+10 puntos<br><br>
+* Implementación de algoritmo de parsing SLR(1) para la evaluación del
+archivo de entrada con cadenas.
+5 puntos<br><br>
+* Indicación de errores sintácticos como resultado de la aplicación del
+algoritmo de parseo sobre el archivo de cadenas provisto.
+3 puntos<br><br>
+* Implementación para la Indicación de errores gramaticales al evaluar las
+entradas en la tabla de parseo SLR(1), identificando conflictos en la tabla
+para gramáticas que no son SLR.
+2 puntos<br><br>
 
 
 
@@ -39,11 +37,11 @@ pip install tabulate (no es necesaria)
 
 ### Recomendaciones
 
-_En la parte del main escoger el scanner a ejectar, luego ejecutar slr-yapar y finalmente el lr que permite la construccion del lr(0)_
+_Seguir el orden de ejecucion respetando los .yal y .yalp a cargar, el archivo que se verificara es el test_file.txt en el cual se puede escribir lo que se desee comprobar<br> main, scanner, lr, main (slr-X), scanner (test_file), slr-yapar _
 
 ### Ejemplos de creaciónes de árboles de expresiones
 
-_outputs de 4 archivos yapal_
+_Pruebas solicitadas para el laboratorio_
 
 ## Auto ✒️
 
