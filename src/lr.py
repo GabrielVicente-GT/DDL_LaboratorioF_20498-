@@ -247,4 +247,4 @@ class LR_0(object):
         # banner(f" Tokens en yalp no definidos en yalex ", False)
 
 if __name__ == '__main__':
-    LR_0("slr-1")
+    LR_0("slr-4")

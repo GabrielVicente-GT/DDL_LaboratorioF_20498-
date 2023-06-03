@@ -85,7 +85,7 @@ with open("./src/AFD_Properties/data.json", "w") as json_file:
 # Creating scanner:
 print(bracket_programation)
 print(type(bracket_programation))
-CreatingScanner(string, 'slr-1.yalp', bracket_programation, Reader(string+'.yal').part_2,False)
-# CreatingScanner(string, 'lab-f.yalp', bracket_programation, Reader(string+'.yal').part_2,False)
+# CreatingScanner(string, 'slr-1.yalp', bracket_programation, Reader(string+'.yal').part_2,False)
+CreatingScanner(string, 'slr-4.yalp', bracket_programation, Reader(string+'.yal').part_2,False)
 # CreatingScanner(string, 'test_file.txt', bracket_programation, Reader(string+'.yal').part_2,False)
 

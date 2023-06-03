@@ -30,6 +30,13 @@ for indice, elemento in enumerate(AugmentedGrammar):
     NumeracionGrammarNew[str(indice+1)] = elemento
 
 print()
+print(NumeracionGrammar)
+
+datos = [(clave, ' '.join(valor)) for clave, valor in NumeracionGrammarNew.items()]
+tabla = tabulate(datos, headers=["Indice", "Produccion"], tablefmt="fancygrid")
+print(tabla)
+
+print()
 banner(" Estados ", False)
 for key, value in AsignacionReversed.items():
     print(f"Estado: {key}")
@@ -62,10 +69,7 @@ for key, value in AsignacionReversed.items():
                 production.pop()
 
                 FollowToDo = production[0]
-                # print(FollowToDo)
-                # print(AugmentedGrammar)
-                # print(AugmentedGrammar[0][0])
-                # print(Terminals)
+
                 Simbolos_reduce = FOLLOW2(FollowToDo, AugmentedGrammar, AugmentedGrammar[0][0], Terminals)
                 for simbol in Simbolos_reduce:
                     if len(InitialDelta[key][simbol])>0:
