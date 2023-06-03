@@ -512,3 +512,47 @@ def FOLLOW(symbol, grammar, start_symbol, terminals):
                             follow_set -= {''}
                             follow_set |= FOLLOW(production[0], grammar, start_symbol, terminals)
     return follow_set
+def FOLLOW2(symbol, grammar, start_symbol, terminals, evaluated_symbols=None):
+    if evaluated_symbols is None:
+        evaluated_symbols = set()
+
+    follow_set = set()
+    if symbol == start_symbol:
+        follow_set.add('$')
+
+    if symbol in evaluated_symbols:
+        return follow_set
+
+    evaluated_symbols.add(symbol)
+
+    for production in grammar:
+        for i, s in enumerate(production[2:]):
+            if s == symbol:
+                if i == len(production[2:]) - 1:
+                    if production[0] != symbol:
+                        follow_set |= FOLLOW2(production[0], grammar, start_symbol, terminals, evaluated_symbols)
+                else:
+                    next_symbol = production[i+3]
+                    if next_symbol in terminals:
+                        follow_set.add(next_symbol)
+                    else:
+                        follow_set |= FIRST(next_symbol, grammar, terminals)
+                        if '' in follow_set:
+                            follow_set.remove('')
+                            follow_set |= FOLLOW2(production[0], grammar, start_symbol, terminals, evaluated_symbols)
+
+    return follow_set
+
+def ACTION_EXP(accion_x, numeracion):
+
+    resultado = accion_x
+
+    if accion_x[0] == 'S':
+        resultado = f"SHIFT TO {accion_x[1:]}"
+
+    if accion_x[0] == 'R':
+        resultado = f"REDUCED BY {' '.join(numeracion[accion_x[1:]])}"
+
+
+
+    return resultado

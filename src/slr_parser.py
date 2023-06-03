@@ -17,16 +17,10 @@ TerminalDict          = data["TerminalsInner"]
 
 
 print()
-banner(" Terminals DICT ", False)
+
 for clave, valor in TerminalDict.items():
     TerminalDict[clave] = valor.replace('return ', '')
 
-print(TerminalDict)
-
-print()
-banner(" Augmented grammar ", False)
-
-print(AugmentedGrammar)
 
 NumeracionGrammar = {}
 NumeracionGrammarNew = {}
@@ -34,17 +28,6 @@ NumeracionGrammarNew = {}
 for indice, elemento in enumerate(AugmentedGrammar):
     NumeracionGrammar[str(elemento)] = indice+1
     NumeracionGrammarNew[str(indice+1)] = elemento
-
-print()
-banner(" Gramar Numeration ", False)
-
-print(NumeracionGrammar)
-
-print()
-banner(" Gramar Numeration Renuved", False)
-
-print(NumeracionGrammarNew)
-
 
 print()
 banner(" Estados ", False)
@@ -67,6 +50,8 @@ for inner_dict in InitialDelta.values():
 
 InitialDelta[str(Aceptacion)]['$'].append('ACC')
 
+CONFLICTS = []
+
 # Reduce movement
 for key, value in AsignacionReversed.items():
     if key != str(Aceptacion):
@@ -77,88 +62,106 @@ for key, value in AsignacionReversed.items():
                 production.pop()
 
                 FollowToDo = production[0]
-
-                Simbolos_reduce = FOLLOW(FollowToDo, AugmentedGrammar, AugmentedGrammar[0][0], Terminals)
+                # print(FollowToDo)
+                # print(AugmentedGrammar)
+                # print(AugmentedGrammar[0][0])
+                # print(Terminals)
+                Simbolos_reduce = FOLLOW2(FollowToDo, AugmentedGrammar, AugmentedGrammar[0][0], Terminals)
                 for simbol in Simbolos_reduce:
-                    InitialDelta[key][simbol].append(f'R{NumeracionGrammar[str(production)]}')
+                    if len(InitialDelta[key][simbol])>0:
+                        CONFLICTS.append(f"CONFLICT in [{key},{simbol}] = ({InitialDelta[key][simbol][0]},R{NumeracionGrammar[str(production)]})")
+                    else:
+                        InitialDelta[key][simbol].append(f'R{NumeracionGrammar[str(production)]}')
                 # print("Estado", key, "Followtd", FollowToDo, "FOLLLOW: ", Simbolos_reduce)
 
-"""Impresion de tabla"""
-
-# Obtener las claves únicas para las columnas
-columns = sorted(set(key for inner_dict in InitialDelta.values() for key in inner_dict.keys()))
-moving = columns.pop(0)
-columns.insert(len(Terminals), moving)
-# print(columns)
-# Crear una lista de listas con los datos para la tabla
-table_data = [[key] + [inner_dict.get(col, []) for col in columns] for key, inner_dict in InitialDelta.items()]
-
-# Imprimir la tabla utilizando tabulate
-banner(" Tabla SLR ", False)
-print(tabulate(table_data, headers=['Estado'] + columns, tablefmt="fancy_grid"))
-
-
-"""Simulacion"""
-
-with open('./src/output.json') as f:
-    tokenizacion_test = json.load(f)
-
-INPUT = []
-STACK = ['0']
-ACTION = None
-
-for key, value in tokenizacion_test.items():
-    INPUT.append(TerminalDict[value])
-
-while '' in INPUT:
-    INPUT.remove('')
-
-INPUT.append('$')
-
-Simulacion = True
-Acepta = True
-
-if len(InitialDelta[STACK[-1]][INPUT[0]]) > 0:
-    ACTION = InitialDelta[STACK[-1]][INPUT[0]][0]
+if len(CONFLICTS) > 0:
+    banner(" "+CONFLICTS[0]+ " ", False)
 else:
-    Simulacion = False
-    Acepta = False
+    """Impresion de tabla"""
 
-while(Simulacion):
+    # Obtener las claves únicas para las columnas
+    columns = sorted(set(key for inner_dict in InitialDelta.values() for key in inner_dict.keys()))
+    moving = columns.pop(0)
+    columns.insert(len(Terminals), moving)
+    # print(columns)
+    # Crear una lista de listas con los datos para la tabla
+    table_data = [[key] + [inner_dict.get(col, []) for col in columns] for key, inner_dict in InitialDelta.items()]
 
-    if ACTION == 'ACC':
-        Simulacion = False
+    # Imprimir la tabla utilizando tabulate
+    banner(" Tabla SLR ", False)
+    print(tabulate(table_data, headers=['Estado'] + columns, tablefmt="fancy_grid"))
+    print()
 
-    print(STACK, " ", INPUT, " ", ACTION)
+    """Simulacion"""
 
-    if ACTION[0] == 'S':
-        STACK.append(INPUT.pop(0))
-        STACK.append(ACTION[1:])
+    with open('./src/output.json') as f:
+        tokenizacion_test = json.load(f)
 
-    if ACTION[0] == 'R':
-        for _ in range((len(NumeracionGrammarNew[ACTION[1:]]) - 2)*2):
-            STACK.pop()
-        STACK.append(NumeracionGrammarNew[ACTION[1:]][0])
-        STACK.append(InitialDelta[STACK[-2]][STACK[-1]][0])
+    INPUT = []
+    STACK = ['0']
+    ACTION = None
 
-    if len(InitialDelta[STACK[-1]][INPUT[0]]) >0:
+    for key, value in tokenizacion_test.items():
+        if value in TerminalDict:
+            INPUT.append(TerminalDict[value])
+
+    while '' in INPUT:
+        INPUT.remove('')
+
+    INPUT.append('$')
+
+    Simulacion = True
+    Acepta = True
+
+    if len(InitialDelta[STACK[-1]][INPUT[0]]) > 0:
         ACTION = InitialDelta[STACK[-1]][INPUT[0]][0]
     else:
         Simulacion = False
         Acepta = False
 
-if Acepta:
-    print("Pertenece")
-else:
-    print("No pertenece")
+    RegistroSimulacion = [['Linea','Pila', 'Simbolos', 'Entrada', 'Accion']]
 
-# Delta = []
-# for key, value in InitialDelta.items():
-#     subtable = []
-#     for subkey, subvalue in value.items():
-#         subtable.append([subkey, subvalue])
-#     Delta.append([key, tabulate(subtable, tablefmt="plain", numalign="center", stralign="left")])
+    while(Simulacion):
 
-# print(tabulate(Delta, headers=['Estado             ', 'Transicion'], tablefmt="fancy_grid", numalign="center", stralign="left"),'\n')
+        if ACTION == 'ACC':
+            Simulacion = False
 
-# print(InitialDelta)
+        # print(STACK, " ", INPUT, " ", ACTION)
+
+        RegistroSimulacion.append(
+            [
+                len(RegistroSimulacion),
+                ' '.join([elemento for elemento in STACK if elemento not in Alfabeto]),
+                ' '.join([elemento for elemento in STACK if elemento in Alfabeto]),
+                ' '.join(INPUT),
+                ACTION_EXP(ACTION, NumeracionGrammarNew)
+            ]
+        )
+
+        if ACTION[0] == 'S':
+            STACK.append(INPUT.pop(0))
+            STACK.append(ACTION[1:])
+
+        if ACTION[0] == 'R':
+            for _ in range((len(NumeracionGrammarNew[ACTION[1:]]) - 2)*2):
+                STACK.pop()
+            STACK.append(NumeracionGrammarNew[ACTION[1:]][0])
+            STACK.append(InitialDelta[STACK[-2]][STACK[-1]][0])
+
+        if len(InitialDelta[STACK[-1]][INPUT[0]]) >0:
+            ACTION = InitialDelta[STACK[-1]][INPUT[0]][0]
+        else:
+            Simulacion = False
+            Acepta = False
+
+    # for x in RegistroSimulacion:
+    #     print(x)
+    encabezados = RegistroSimulacion.pop(0)
+    print(tabulate(RegistroSimulacion, headers=encabezados, tablefmt="fancy_grid"))
+
+    if Acepta:
+        print()
+        banner(' ¿Se acepta segun la simulacion? YES ', False)
+    else:
+        print()
+        banner(' ¿Se acepta segun la simulacion? NO ', False)

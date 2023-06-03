@@ -58,28 +58,35 @@ class LR_0(object):
 
         """Verificacion con yalex"""
         for x in self.terminals:
-            if x not in self.tokens_yalex:
-                self.continue_process = False
-                self.faltantes.append(x)
+            if x != 'IGNORE':
+                if x not in self.tokens_yalex:
+                    self.continue_process = False
+                    self.faltantes.append(x)
+            else:
+                self.terminals.remove('IGNORE')
 
         if self.continue_process == True:
 
             """Terminales encontrados para corroborar en yalex"""
 
+            print(self.clean_yapar)
+
             for position, token in enumerate(self.clean_yapar):
                 if self.clean_yapar[position][1] == "nts":
-                    if self.clean_yapar[position + 1][1] == "':'":
-                        production = []
-                        production.append(self.clean_yapar[position][0].strip("'").split(' IN')[0])
-                        production.append("-->")
-                        for next_pos in range(position + 2, len(self.clean_yapar)):
-                            if self.clean_yapar[next_pos][1] == "';'":
-                                break
-                            elif self.clean_yapar[next_pos][1] == "MT" and "|" in self.clean_yapar[next_pos][0]:
-                                production.append("|")
-                            else:
-                                production.append(self.clean_yapar[next_pos][0].strip("'").split(' IN')[0])
-                        self.grammar.append(production)
+                    # print(self.clean_yapar[position+1])
+                    if position +1< len(self.clean_yapar):
+                        if self.clean_yapar[position + 1][1] == "':'":
+                            production = []
+                            production.append(self.clean_yapar[position][0].strip("'").split(' IN')[0])
+                            production.append("-->")
+                            for next_pos in range(position + 2, len(self.clean_yapar)):
+                                if self.clean_yapar[next_pos][1] == "';'":
+                                    break
+                                elif self.clean_yapar[next_pos][1] == "MT" and "|" in self.clean_yapar[next_pos][0]:
+                                    production.append("|")
+                                else:
+                                    production.append(self.clean_yapar[next_pos][0].strip("'").split(' IN')[0])
+                            self.grammar.append(production)
 
             """Gramatica del yapal"""
 
@@ -240,4 +247,4 @@ class LR_0(object):
         # banner(f" Tokens en yalp no definidos en yalex ", False)
 
 if __name__ == '__main__':
-    LR_0("slr-1")
+    LR_0("slr-3")

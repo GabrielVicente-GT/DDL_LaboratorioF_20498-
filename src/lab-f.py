@@ -12,7 +12,7 @@ initial_state       = data["Initial_state"]
 designation         = data["Tokens"]
 current_state       = initial_state
         
-with open("./src/YaparTests/slr-3.yalp", "r") as file:
+with open("./src/YaparTests/test_file.txt", "r") as file:
     #Limpiando el texto
     content = file.read()
     content = repr(content)
@@ -26,48 +26,13 @@ with open("./src/YaparTests/slr-3.yalp", "r") as file:
         elif caracter == 'n' or caracter == 't' or caracter == 's':
             if w[position-1] != '\\':
                 temp_w.append(caracter)
-        elif caracter == '%':
-            if '%token' == ''.join(w[position:(position+6)]):
-                temp_w.append(''.join(w[position:(position+6)]))
-                w[position:(position+6)] = [''] * len(w[position:(position+6)])
-        
-        elif caracter == '/':
-            if '/*' == ''.join(w[position:(position+2)]):
-                temp_w.append(''.join(w[position:(position+2)]))
-                w[position:(position+2)] = [''] * len(w[position:(position+2)])
-        
-        elif caracter == '*':
-            if '*/' == ''.join(w[position:(position+2)]):
-                temp_w.append(''.join(w[position:(position+2)]))
-                w[position:(position+2)] = [''] * len(w[position:(position+2)])
-        
-        elif caracter == '+':
-            if '+' == ''.join(w[position:(position+1)]):
+        elif caracter == '=':
+            if '=' == ''.join(w[position:(position+1)]):
                 temp_w.append(''.join(w[position:(position+1)]))
                 w[position:(position+1)] = [''] * len(w[position:(position+1)])
         
         elif caracter == '*':
             if '*' == ''.join(w[position:(position+1)]):
-                temp_w.append(''.join(w[position:(position+1)]))
-                w[position:(position+1)] = [''] * len(w[position:(position+1)])
-        
-        elif caracter == ':':
-            if ':' == ''.join(w[position:(position+1)]):
-                temp_w.append(''.join(w[position:(position+1)]))
-                w[position:(position+1)] = [''] * len(w[position:(position+1)])
-        
-        elif caracter == ';':
-            if ';' == ''.join(w[position:(position+1)]):
-                temp_w.append(''.join(w[position:(position+1)]))
-                w[position:(position+1)] = [''] * len(w[position:(position+1)])
-        
-        elif caracter == '(':
-            if '(' == ''.join(w[position:(position+1)]):
-                temp_w.append(''.join(w[position:(position+1)]))
-                w[position:(position+1)] = [''] * len(w[position:(position+1)])
-        
-        elif caracter == ')':
-            if ')' == ''.join(w[position:(position+1)]):
                 temp_w.append(''.join(w[position:(position+1)]))
                 w[position:(position+1)] = [''] * len(w[position:(position+1)])
         

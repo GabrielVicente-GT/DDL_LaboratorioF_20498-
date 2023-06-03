@@ -43,8 +43,9 @@ Description()
 
 # File request
 # string = input('Enter a file name from which to generate the Expression tree: ')
-# string = 'slr-yapar'
-string = 'slr-1'
+string = 'slr-yapar'
+# string = 'lab-f'
+# string = 'slr-1'
 
 # Postfix from the .yal by shunting yard method
 # yal_postfix = InfixToPostfix(Reader(file_name).yal_final_regex).postfix
@@ -84,6 +85,7 @@ with open("./src/AFD_Properties/data.json", "w") as json_file:
 # Creating scanner:
 print(bracket_programation)
 print(type(bracket_programation))
-# CreatingScanner(string, 'slr-1.yalp', bracket_programation, Reader(string+'.yal').part_2,False)
-CreatingScanner(string, 'test_file.txt', bracket_programation, Reader(string+'.yal').part_2,False)
+CreatingScanner(string, 'slr-1.yalp', bracket_programation, Reader(string+'.yal').part_2,False)
+# CreatingScanner(string, 'lab-f.yalp', bracket_programation, Reader(string+'.yal').part_2,False)
+# CreatingScanner(string, 'test_file.txt', bracket_programation, Reader(string+'.yal').part_2,False)
 
