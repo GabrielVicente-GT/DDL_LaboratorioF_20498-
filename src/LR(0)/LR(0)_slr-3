@@ -12,25 +12,12 @@ digraph "LR(0)" {
 ['term', '-->', '.', 'NUMBER', 'TIMES', 'term']
 ['term', '-->', '.', 'NUMBER']
 ['term', '-->', '.', 'LPAREN', 'expression', 'RPAREN']]" shape=box]
-	"[['term', '-->', 'NUMBER', '.']
-['term', '-->', 'NUMBER', '.', 'TIMES', 'term']]" [label="I_1
-
-[['term', '-->', 'NUMBER', '.']
-['term', '-->', 'NUMBER', '.', 'TIMES', 'term']]" shape=box]
-	"[['expression', '-->', 'term', '.']
-['expression', '-->', 'term', '.', 'PLUS', 'expression']]" [label="I_2
-
-[['expression', '-->', 'term', '.']
-['expression', '-->', 'term', '.', 'PLUS', 'expression']]" shape=box]
-	"[['expression`', '-->', 'expression', '.']]" [label="I_3
-
-[['expression`', '-->', 'expression', '.']]" shape=box]
 	"[['term', '-->', 'LPAREN', '.', 'expression', 'RPAREN']
 ['expression', '-->', '.', 'term', 'PLUS', 'expression']
 ['expression', '-->', '.', 'term']
 ['term', '-->', '.', 'NUMBER', 'TIMES', 'term']
 ['term', '-->', '.', 'NUMBER']
-['term', '-->', '.', 'LPAREN', 'expression', 'RPAREN']]" [label="I_4
+['term', '-->', '.', 'LPAREN', 'expression', 'RPAREN']]" [label="I_1
 
 [['term', '-->', 'LPAREN', '.', 'expression', 'RPAREN']
 ['expression', '-->', '.', 'term', 'PLUS', 'expression']
@@ -38,18 +25,25 @@ digraph "LR(0)" {
 ['term', '-->', '.', 'NUMBER', 'TIMES', 'term']
 ['term', '-->', '.', 'NUMBER']
 ['term', '-->', '.', 'LPAREN', 'expression', 'RPAREN']]" shape=box]
-	"[['term', '-->', 'LPAREN', 'expression', '.', 'RPAREN']]" [label="I_5
+	"[['term', '-->', 'NUMBER', '.']
+['term', '-->', 'NUMBER', '.', 'TIMES', 'term']]" [label="I_2
 
-[['term', '-->', 'LPAREN', 'expression', '.', 'RPAREN']]" shape=box]
-	"[['term', '-->', 'LPAREN', 'expression', 'RPAREN', '.']]" [label="I_6
+[['term', '-->', 'NUMBER', '.']
+['term', '-->', 'NUMBER', '.', 'TIMES', 'term']]" shape=box]
+	"[['expression', '-->', 'term', '.']
+['expression', '-->', 'term', '.', 'PLUS', 'expression']]" [label="I_3
 
-[['term', '-->', 'LPAREN', 'expression', 'RPAREN', '.']]" shape=box]
+[['expression', '-->', 'term', '.']
+['expression', '-->', 'term', '.', 'PLUS', 'expression']]" shape=box]
+	"[['expression`', '-->', 'expression', '.']]" [label="I_4
+
+[['expression`', '-->', 'expression', '.']]" shape=box]
 	"[['expression', '-->', 'term', 'PLUS', '.', 'expression']
 ['expression', '-->', '.', 'term', 'PLUS', 'expression']
 ['expression', '-->', '.', 'term']
 ['term', '-->', '.', 'NUMBER', 'TIMES', 'term']
 ['term', '-->', '.', 'NUMBER']
-['term', '-->', '.', 'LPAREN', 'expression', 'RPAREN']]" [label="I_7
+['term', '-->', '.', 'LPAREN', 'expression', 'RPAREN']]" [label="I_5
 
 [['expression', '-->', 'term', 'PLUS', '.', 'expression']
 ['expression', '-->', '.', 'term', 'PLUS', 'expression']
@@ -57,21 +51,38 @@ digraph "LR(0)" {
 ['term', '-->', '.', 'NUMBER', 'TIMES', 'term']
 ['term', '-->', '.', 'NUMBER']
 ['term', '-->', '.', 'LPAREN', 'expression', 'RPAREN']]" shape=box]
-	"[['expression', '-->', 'term', 'PLUS', 'expression', '.']]" [label="I_8
+	"[['expression', '-->', 'term', 'PLUS', 'expression', '.']]" [label="I_6
 
 [['expression', '-->', 'term', 'PLUS', 'expression', '.']]" shape=box]
 	"[['term', '-->', 'NUMBER', 'TIMES', '.', 'term']
 ['term', '-->', '.', 'NUMBER', 'TIMES', 'term']
 ['term', '-->', '.', 'NUMBER']
-['term', '-->', '.', 'LPAREN', 'expression', 'RPAREN']]" [label="I_9
+['term', '-->', '.', 'LPAREN', 'expression', 'RPAREN']]" [label="I_7
 
 [['term', '-->', 'NUMBER', 'TIMES', '.', 'term']
 ['term', '-->', '.', 'NUMBER', 'TIMES', 'term']
 ['term', '-->', '.', 'NUMBER']
 ['term', '-->', '.', 'LPAREN', 'expression', 'RPAREN']]" shape=box]
-	"[['term', '-->', 'NUMBER', 'TIMES', 'term', '.']]" [label="I_10
+	"[['term', '-->', 'NUMBER', 'TIMES', 'term', '.']]" [label="I_8
 
 [['term', '-->', 'NUMBER', 'TIMES', 'term', '.']]" shape=box]
+	"[['term', '-->', 'LPAREN', 'expression', '.', 'RPAREN']]" [label="I_9
+
+[['term', '-->', 'LPAREN', 'expression', '.', 'RPAREN']]" shape=box]
+	"[['term', '-->', 'LPAREN', 'expression', 'RPAREN', '.']]" [label="I_10
+
+[['term', '-->', 'LPAREN', 'expression', 'RPAREN', '.']]" shape=box]
+	"[['expression`', '-->', '.', 'expression']
+['expression', '-->', '.', 'term', 'PLUS', 'expression']
+['expression', '-->', '.', 'term']
+['term', '-->', '.', 'NUMBER', 'TIMES', 'term']
+['term', '-->', '.', 'NUMBER']
+['term', '-->', '.', 'LPAREN', 'expression', 'RPAREN']]" -> "[['term', '-->', 'LPAREN', '.', 'expression', 'RPAREN']
+['expression', '-->', '.', 'term', 'PLUS', 'expression']
+['expression', '-->', '.', 'term']
+['term', '-->', '.', 'NUMBER', 'TIMES', 'term']
+['term', '-->', '.', 'NUMBER']
+['term', '-->', '.', 'LPAREN', 'expression', 'RPAREN']]" [label="'LPAREN'" arrowhead=vee]
 	"[['expression`', '-->', '.', 'expression']
 ['expression', '-->', '.', 'term', 'PLUS', 'expression']
 ['expression', '-->', '.', 'term']
@@ -92,7 +103,7 @@ digraph "LR(0)" {
 ['term', '-->', '.', 'NUMBER', 'TIMES', 'term']
 ['term', '-->', '.', 'NUMBER']
 ['term', '-->', '.', 'LPAREN', 'expression', 'RPAREN']]" -> "[['expression`', '-->', 'expression', '.']]" [label="'expression'" arrowhead=vee]
-	"[['expression`', '-->', '.', 'expression']
+	"[['term', '-->', 'LPAREN', '.', 'expression', 'RPAREN']
 ['expression', '-->', '.', 'term', 'PLUS', 'expression']
 ['expression', '-->', '.', 'term']
 ['term', '-->', '.', 'NUMBER', 'TIMES', 'term']
@@ -103,18 +114,6 @@ digraph "LR(0)" {
 ['term', '-->', '.', 'NUMBER', 'TIMES', 'term']
 ['term', '-->', '.', 'NUMBER']
 ['term', '-->', '.', 'LPAREN', 'expression', 'RPAREN']]" [label="'LPAREN'" arrowhead=vee]
-	"[['term', '-->', 'NUMBER', '.']
-['term', '-->', 'NUMBER', '.', 'TIMES', 'term']]" -> "[['term', '-->', 'NUMBER', 'TIMES', '.', 'term']
-['term', '-->', '.', 'NUMBER', 'TIMES', 'term']
-['term', '-->', '.', 'NUMBER']
-['term', '-->', '.', 'LPAREN', 'expression', 'RPAREN']]" [label="'TIMES'" arrowhead=vee]
-	"[['expression', '-->', 'term', '.']
-['expression', '-->', 'term', '.', 'PLUS', 'expression']]" -> "[['expression', '-->', 'term', 'PLUS', '.', 'expression']
-['expression', '-->', '.', 'term', 'PLUS', 'expression']
-['expression', '-->', '.', 'term']
-['term', '-->', '.', 'NUMBER', 'TIMES', 'term']
-['term', '-->', '.', 'NUMBER']
-['term', '-->', '.', 'LPAREN', 'expression', 'RPAREN']]" [label="'PLUS'" arrowhead=vee]
 	"[['term', '-->', 'LPAREN', '.', 'expression', 'RPAREN']
 ['expression', '-->', '.', 'term', 'PLUS', 'expression']
 ['expression', '-->', '.', 'term']
@@ -135,7 +134,19 @@ digraph "LR(0)" {
 ['term', '-->', '.', 'NUMBER', 'TIMES', 'term']
 ['term', '-->', '.', 'NUMBER']
 ['term', '-->', '.', 'LPAREN', 'expression', 'RPAREN']]" -> "[['term', '-->', 'LPAREN', 'expression', '.', 'RPAREN']]" [label="'expression'" arrowhead=vee]
-	"[['term', '-->', 'LPAREN', '.', 'expression', 'RPAREN']
+	"[['term', '-->', 'NUMBER', '.']
+['term', '-->', 'NUMBER', '.', 'TIMES', 'term']]" -> "[['term', '-->', 'NUMBER', 'TIMES', '.', 'term']
+['term', '-->', '.', 'NUMBER', 'TIMES', 'term']
+['term', '-->', '.', 'NUMBER']
+['term', '-->', '.', 'LPAREN', 'expression', 'RPAREN']]" [label="'TIMES'" arrowhead=vee]
+	"[['expression', '-->', 'term', '.']
+['expression', '-->', 'term', '.', 'PLUS', 'expression']]" -> "[['expression', '-->', 'term', 'PLUS', '.', 'expression']
+['expression', '-->', '.', 'term', 'PLUS', 'expression']
+['expression', '-->', '.', 'term']
+['term', '-->', '.', 'NUMBER', 'TIMES', 'term']
+['term', '-->', '.', 'NUMBER']
+['term', '-->', '.', 'LPAREN', 'expression', 'RPAREN']]" [label="'PLUS'" arrowhead=vee]
+	"[['expression', '-->', 'term', 'PLUS', '.', 'expression']
 ['expression', '-->', '.', 'term', 'PLUS', 'expression']
 ['expression', '-->', '.', 'term']
 ['term', '-->', '.', 'NUMBER', 'TIMES', 'term']
@@ -146,7 +157,6 @@ digraph "LR(0)" {
 ['term', '-->', '.', 'NUMBER', 'TIMES', 'term']
 ['term', '-->', '.', 'NUMBER']
 ['term', '-->', '.', 'LPAREN', 'expression', 'RPAREN']]" [label="'LPAREN'" arrowhead=vee]
-	"[['term', '-->', 'LPAREN', 'expression', '.', 'RPAREN']]" -> "[['term', '-->', 'LPAREN', 'expression', 'RPAREN', '.']]" [label="'RPAREN'" arrowhead=vee]
 	"[['expression', '-->', 'term', 'PLUS', '.', 'expression']
 ['expression', '-->', '.', 'term', 'PLUS', 'expression']
 ['expression', '-->', '.', 'term']
@@ -167,9 +177,7 @@ digraph "LR(0)" {
 ['term', '-->', '.', 'NUMBER', 'TIMES', 'term']
 ['term', '-->', '.', 'NUMBER']
 ['term', '-->', '.', 'LPAREN', 'expression', 'RPAREN']]" -> "[['expression', '-->', 'term', 'PLUS', 'expression', '.']]" [label="'expression'" arrowhead=vee]
-	"[['expression', '-->', 'term', 'PLUS', '.', 'expression']
-['expression', '-->', '.', 'term', 'PLUS', 'expression']
-['expression', '-->', '.', 'term']
+	"[['term', '-->', 'NUMBER', 'TIMES', '.', 'term']
 ['term', '-->', '.', 'NUMBER', 'TIMES', 'term']
 ['term', '-->', '.', 'NUMBER']
 ['term', '-->', '.', 'LPAREN', 'expression', 'RPAREN']]" -> "[['term', '-->', 'LPAREN', '.', 'expression', 'RPAREN']
@@ -187,15 +195,7 @@ digraph "LR(0)" {
 ['term', '-->', '.', 'NUMBER', 'TIMES', 'term']
 ['term', '-->', '.', 'NUMBER']
 ['term', '-->', '.', 'LPAREN', 'expression', 'RPAREN']]" -> "[['term', '-->', 'NUMBER', 'TIMES', 'term', '.']]" [label="'term'" arrowhead=vee]
-	"[['term', '-->', 'NUMBER', 'TIMES', '.', 'term']
-['term', '-->', '.', 'NUMBER', 'TIMES', 'term']
-['term', '-->', '.', 'NUMBER']
-['term', '-->', '.', 'LPAREN', 'expression', 'RPAREN']]" -> "[['term', '-->', 'LPAREN', '.', 'expression', 'RPAREN']
-['expression', '-->', '.', 'term', 'PLUS', 'expression']
-['expression', '-->', '.', 'term']
-['term', '-->', '.', 'NUMBER', 'TIMES', 'term']
-['term', '-->', '.', 'NUMBER']
-['term', '-->', '.', 'LPAREN', 'expression', 'RPAREN']]" [label="'LPAREN'" arrowhead=vee]
+	"[['term', '-->', 'LPAREN', 'expression', '.', 'RPAREN']]" -> "[['term', '-->', 'LPAREN', 'expression', 'RPAREN', '.']]" [label="'RPAREN'" arrowhead=vee]
 	accept [label=ACCEPT color=white shape=box]
 	"[['expression`', '-->', 'expression', '.']]" -> accept [label="$" arrowhead=vee]
 }
